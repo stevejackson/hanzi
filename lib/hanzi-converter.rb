@@ -8,7 +8,8 @@ class HanziConverter
       return if @data
       @data = []
 
-      File.open('lib/data/cedict_ts.u8').each_line do |line|
+      file_path = File.expand_path('../../lib/data/cedict_ts.u8', __FILE__)
+      File.open(file_path).each_line do |line|
         next if line.start_with?('#')
         line = line.force_encoding('utf-8')
 
