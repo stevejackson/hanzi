@@ -36,7 +36,7 @@ class HanziConverter
       entry = @data.find do |word|
         word[:simplified] == text || word[:traditional] == text
       end
-      entry[:pinyin] if entry
+      entry[:pinyin].gsub("\s", '') if entry
     end
   end
 end

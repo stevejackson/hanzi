@@ -5,7 +5,7 @@ Convert Hanzi to pinyin. Unlike other similar gems, this includes tones and can 
 Example usage:
 
   HanziConverter.load_data
-  HanziConverter.to_pinyin('走红') # zou3 hong2
+  HanziConverter.to_pinyin('走红') # zou3hong2
 
 To run tests:
 
