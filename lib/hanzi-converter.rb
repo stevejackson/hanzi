@@ -22,7 +22,7 @@ class HanziConverter
         line_data[:simplified] = line[0, line.index(' ')]
 
         line = line[line.index('['), line.length]
-        line_data[:pinyin] = line[1, line.index(']') - 1]
+        line_data[:pinyin] = line[1, line.index(']') - 1].downcase
 
         line = line[line.index('/'), line.rindex('/')]
         line_data[:english] = line[1, line.rindex('/') - 1]
@@ -34,10 +34,49 @@ class HanziConverter
 
     def to_pinyin(text, options={})
       load_data if @data.nil?
+
+      result = ''
+      pos = 0
+
+      loop do
+        char = text[pos]
+        break if !char
+
+        if char.ord < 0x4E00 || char.ord > 0x9FFF
+          # it's not a chinese character.
+          result << char
+          pos += 1
+        else
+          # it's a chinese character. start by trying to find a long word match,
+          # and if it fails, all the way down to a single hanzi.
+          match = nil
+          match_length = 0
+          4.downto(1) do |length|
+            match = find_match(text[pos, length])
+            match_length = length
+            break if match
+          end
+
+          if match
+            result << match[:pinyin].gsub("\s", '')
+            pos += match_length
+            next
+          else
+            # if we're still here, we didn't find a match at all.
+            result << char
+            pos += 1
+          end
+        end
+      end
+
+      result
+    end
+
+    private
+    def find_match(text)
       entry = @data.find do |word|
         word[:simplified] == text || word[:traditional] == text
       end
-      entry[:pinyin].gsub("\s", '') if entry
     end
   end
 end

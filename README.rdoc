@@ -6,6 +6,10 @@ Example usage:
 
   HanziConverter.load_data
   HanziConverter.to_pinyin('走红') # zou3hong2
+  HanziConverter.to_pinyin('簡單') # jian3dan1
+  HanziConverter.to_pinyin('为什么') # wei4shen2me5
+  HanziConverter.to_pinyin('no! 为什么！') # no! wei4shen2me5！
+  HanziConverter.to_pinyin('你好， 我是康昱辰。') # ni3hao3， wo3shi4kang1yu4chen2。
 
 To run tests:
 

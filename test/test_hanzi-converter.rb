@@ -24,4 +24,14 @@ class TestHanziConverter < Test::Unit::TestCase
     assert_equal 'jian3dan1', result
   end
 
+  def test_can_convert_with_surrounding_english
+    result = HanziConverter.to_pinyin('no! 为什么！')
+    assert_equal 'no! wei4shen2me5！', result
+  end
+
+  def test_can_convert_sentence_of_hanzi
+    result = HanziConverter.to_pinyin('你好， 我是康昱辰。')
+    assert_equal 'ni3hao3， wo3shi4kang1yu4chen2。', result
+  end
+
 end
