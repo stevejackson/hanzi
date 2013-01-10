@@ -1,7 +1,27 @@
+# encoding: utf-8
+
 require 'helper'
 
 class TestHanziConverter < Test::Unit::TestCase
-  should "probably rename this file and start testing for real" do
-    flunk "hey buddy, you should probably rename this file and start testing for real"
+
+  def test_should_init_data
+    HanziConverter.load_data
+    assert HanziConverter.data.count > 0
   end
+
+  def test_convert_with_tones
+    result = HanziConverter.to_pinyin('为什么')
+    assert_equal 'wei4 shen2 me5', result
+  end
+
+  def test_second_word
+    result = HanziConverter.to_pinyin('走红')
+    assert_equal 'zou3 hong2', result
+  end
+
+  def test_can_convert_traditional
+    result = HanziConverter.to_pinyin('簡單')
+    assert_equal 'jian3 dan1', result
+  end
+
 end

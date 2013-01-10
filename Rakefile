@@ -17,8 +17,8 @@ Jeweler::Tasks.new do |gem|
   gem.name = "hanzi-converter"
   gem.homepage = "http://github.com/stevejackson/hanzi-converter"
   gem.license = "MIT"
-  gem.summary = %Q{TODO: one-line summary of your gem}
-  gem.description = %Q{TODO: longer description of your gem}
+  gem.summary = %Q{Convert Hanzi to pinyin. Unlike other similar gems, this includes tones and can accurately translate common words.}
+  gem.description = %Q{Convert Hanzi to pinyin. Unlike other similar gems, this includes tones and can accurately translate common words.}
   gem.email = "steven.j.jackson@gmail.com"
   gem.authors = ["Steve Jackson"]
   # dependencies defined in Gemfile
@@ -30,14 +30,6 @@ Rake::TestTask.new(:test) do |test|
   test.libs << 'lib' << 'test'
   test.pattern = 'test/**/test_*.rb'
   test.verbose = true
-end
-
-require 'rcov/rcovtask'
-Rcov::RcovTask.new do |test|
-  test.libs << 'test'
-  test.pattern = 'test/**/test_*.rb'
-  test.verbose = true
-  test.rcov_opts << '--exclude "gems/*"'
 end
 
 task :default => :test

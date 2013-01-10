@@ -1,9 +1,18 @@
 = hanzi-converter
 
-Description goes here.
+Convert Hanzi to pinyin. Unlike other similar gems, this includes tones and can accurately translate common words (others fail at things like 为什么). Uses cc-cedict for data. Does not yet have fallback for individual hanzi not in cedict.
+
+Example usage:
+
+  HanziConverter.load_data
+  HanziConverter.to_pinyin('走红') # zou3 hong2
+
+To run tests:
+
+  rake test
 
 == Contributing to hanzi-converter
- 
+
 * Check out the latest master to make sure the feature hasn't been implemented or the bug hasn't been fixed yet.
 * Check out the issue tracker to make sure someone already hasn't requested it and/or contributed it.
 * Fork the project.
@@ -15,5 +24,5 @@ Description goes here.
 == Copyright
 
 Copyright (c) 2013 Steve Jackson. See LICENSE.txt for
-further details.
+further details. Uses http://cc-cedict.org for data.
 
