@@ -23,6 +23,7 @@ Gem::Specification.new do |s|
     "README.rdoc",
     "Rakefile",
     "VERSION",
+    "hanzi-converter.gemspec",
     "lib/data/cedict_ts.u8",
     "lib/hanzi-converter.rb",
     "test/helper.rb",
