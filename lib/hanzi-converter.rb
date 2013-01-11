@@ -60,9 +60,7 @@ class HanziConverter
           if match
             result << match[:pinyin].gsub("\s", '')
             pos += match_length
-            next
           else
-            # if we're still here, we didn't find a match at all.
             result << char
             pos += 1
           end
@@ -78,5 +76,6 @@ class HanziConverter
         word[:simplified] == text || word[:traditional] == text
       end
     end
+
   end
 end
