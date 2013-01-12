@@ -11,6 +11,9 @@ Example usage:
   Hanzi.to_pinyin('no! 为什么！') # no! wei4shen2me5！
   Hanzi.to_pinyin('你好， 我是康昱辰。') # ni3hao3， wo3shi4kang1yu4chen2。
 
+  Hanzi.to_english('孔子') # Confucius (551-479 BC), Chinese thinker and social philosopher, also known as 孔夫子[Kong3 fu1 zi3]
+  Hanzi.to_english('老子喜欢') # nil (can only translate exact word matches)
+
 To run tests:
 
   rake test

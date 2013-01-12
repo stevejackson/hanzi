@@ -52,7 +52,7 @@ class Hanzi
           match = nil
           match_length = 0
           4.downto(1) do |length|
-            match = find_match(text[pos, length])
+            match = find_hanzi_match(text[pos, length])
             match_length = length
             break if match
           end
@@ -70,8 +70,15 @@ class Hanzi
       result
     end
 
+    def to_english(text)
+      load_data if @data.nil?
+
+      entry = find_hanzi_match(text)
+      entry[:english] if entry && entry[:english]
+    end
+
     private
-    def find_match(text)
+    def find_hanzi_match(text)
       entry = @data.find do |word|
         word[:simplified] == text || word[:traditional] == text
       end
