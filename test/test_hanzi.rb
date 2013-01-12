@@ -41,7 +41,27 @@ class TestHanzi < Test::Unit::TestCase
 
   def test_returns_nil_for_not_found_english_translation
     result = Hanzi.to_english('老子你好')
-    assert_equal result, nil
+    assert_equal nil, result
+  end
+
+  def test_can_convert_from_simplified_to_traditional
+    result = Hanzi.to_traditional('拉萨')
+    assert_equal '拉薩', result
+  end
+
+  def test_can_convert_traditional_to_traditional
+    result = Hanzi.to_traditional('拉薩')
+    assert_equal '拉薩', result
+  end
+
+  def test_can_convert_traditional_to_simplified
+    result = Hanzi.to_simplified('拉薩')
+    assert_equal '拉萨', result
+  end
+
+  def test_cannot_convert_non_exact_words_simplified
+    result = Hanzi.to_simplified('拉萨喜欢')
+    assert_equal nil, result
   end
 
 end
