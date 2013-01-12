@@ -1,10 +1,9 @@
 = hanzi
 
-Convert Hanzi to pinyin. Unlike other similar gems, this includes tones and can accurately translate common words (others fail at things like 为什么). Uses cc-cedict for data. Does not yet have fallback for individual hanzi not in cedict.
-
+Ruby gem for handling common Hanzi operations. Can convert to pinyin with proper tones for common words (other gems tend to fail on simple words), return english translation, or convert between simplified and traditional. Uses cc-cedict for data.
 Example usage:
 
-  Hanzi.load_data
+  Hanzi.load_data # optional to pre-load data.
   Hanzi.to_pinyin('走红') # zou3hong2
   Hanzi.to_pinyin('簡單') # jian3dan1
   Hanzi.to_pinyin('为什么') # wei4shen2me5
