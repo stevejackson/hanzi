@@ -14,8 +14,8 @@ require 'rake'
 require 'jeweler'
 Jeweler::Tasks.new do |gem|
   # gem is a Gem::Specification... see http://docs.rubygems.org/read/chapter/20 for more options
-  gem.name = "hanzi-converter"
-  gem.homepage = "http://github.com/stevejackson/hanzi-converter"
+  gem.name = "hanzi"
+  gem.homepage = "http://github.com/stevejackson/hanzi"
   gem.license = "MIT"
   gem.summary = %Q{Convert Hanzi to pinyin. Unlike other similar gems, this includes tones and can accurately translate common words.}
   gem.description = %Q{Convert Hanzi to pinyin. Unlike other similar gems, this includes tones and can accurately translate common words.}
@@ -39,7 +39,7 @@ Rake::RDocTask.new do |rdoc|
   version = File.exist?('VERSION') ? File.read('VERSION') : ""
 
   rdoc.rdoc_dir = 'rdoc'
-  rdoc.title = "hanzi-converter #{version}"
+  rdoc.title = "hanzi #{version}"
   rdoc.rdoc_files.include('README*')
   rdoc.rdoc_files.include('lib/**/*.rb')
 end

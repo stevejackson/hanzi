@@ -1,6 +1,6 @@
 # encoding: utf-8
 
-class HanziConverter
+class Hanzi
   class << self
     attr_accessor :data
 

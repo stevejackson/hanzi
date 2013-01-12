@@ -4,7 +4,7 @@
 # -*- encoding: utf-8 -*-
 
 Gem::Specification.new do |s|
-  s.name = "hanzi-converter"
+  s.name = "hanzi"
   s.version = "0.2.0"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
@@ -23,13 +23,13 @@ Gem::Specification.new do |s|
     "README.rdoc",
     "Rakefile",
     "VERSION",
-    "hanzi-converter.gemspec",
+    "hanzi.gemspec",
     "lib/data/cedict_ts.u8",
-    "lib/hanzi-converter.rb",
+    "lib/hanzi.rb",
     "test/helper.rb",
-    "test/test_hanzi-converter.rb"
+    "test/test_hanzi.rb"
   ]
-  s.homepage = "http://github.com/stevejackson/hanzi-converter"
+  s.homepage = "http://github.com/stevejackson/hanzi"
   s.licenses = ["MIT"]
   s.require_paths = ["lib"]
   s.rubygems_version = "1.8.24"
