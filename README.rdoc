@@ -13,7 +13,6 @@ Example usage:
   Hanzi.to_english('孔子') # Confucius (551-479 BC), Chinese thinker and social philosopher, also known as 孔夫子[Kong3 fu1 zi3]
   Hanzi.to_english('老子喜欢') # nil (can only translate exact word matches)
 
-  Hanzi.to_traditional('')
   Hanzi.to_traditional('拉萨') # 拉薩
   Hanzi.to_traditional('拉薩') # 拉薩
   Hanzi.to_simplified('拉薩') # 拉萨
