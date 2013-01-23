@@ -18,7 +18,7 @@ Example usage:
   Hanzi.to_simplified('拉薩') # 拉萨
   Hanzi.to_simplified('abc 拉萨') # nil (for now, only supports exact word matches)
 
-  Hanzi.matching_entries('着') # returns an array of the all dict enrtries with exact hanzi matches
+  Hanzi.matching_entries('着') # returns an array of the all dict entries with exact hanzi matches
     [{:traditional=>"著",
       :simplified=>"着",
       :pinyin=>"zhao1",
