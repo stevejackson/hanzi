@@ -91,6 +91,14 @@ class Hanzi
       entry[:traditional] if entry && entry[:traditional]
     end
 
+    def matching_entries(text)
+      load_data if @data.nil?
+
+      entries = @data.select do |word|
+        word[:simplified] == text || word[:traditional] == text
+      end
+    end
+
     private
     def find_hanzi_match(text)
       entry = @data.find do |word|

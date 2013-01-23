@@ -1,4 +1,4 @@
-= hanzi
+= Hanzi
 
 Ruby gem for handling common Hanzi operations. Can convert to pinyin with proper tones for common words (other gems tend to fail on simple words), return english translation, or convert between simplified and traditional. Uses cc-cedict for data.
 Example usage:
@@ -17,6 +17,25 @@ Example usage:
   Hanzi.to_traditional('拉薩') # 拉薩
   Hanzi.to_simplified('拉薩') # 拉萨
   Hanzi.to_simplified('abc 拉萨') # nil (for now, only supports exact word matches)
+
+  Hanzi.matching_entries('着') # returns an array of the all dict enrtries with exact hanzi matches
+    [{:traditional=>"著",
+      :simplified=>"着",
+      :pinyin=>"zhao1",
+      :english=>"(chess) move/trick/all right!/(dialect) to add"},
+     {:traditional=>"著",
+      :simplified=>"着",
+      :pinyin=>"zhao2",
+      :english=>
+       "to touch/to come in contact with/to feel/to be affected by/to catch fire/to fall asleep/to burn"},
+     {:traditional=>"著",
+      :simplified=>"着",
+      :pinyin=>"zhe5",
+      :english=>"aspect particle indicating action in progress"},
+     {:traditional=>"著",
+      :simplified=>"着",
+      :pinyin=>"zhuo2",
+      :english=>"to wear (clothes)/to contact/to use/to apply"}]
 
 To run tests:
 

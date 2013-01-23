@@ -34,6 +34,13 @@ class TestHanzi < Test::Unit::TestCase
     assert_equal 'ni3hao3， wo3shi4kang1yu4chen2。', result
   end
 
+  def test_can_find_all_matching_entries
+    results = Hanzi.matching_entries('着')
+    assert results.find { |entry| entry[:pinyin].include?('zhe5') } != nil
+    assert results.find { |entry| entry[:pinyin].include?('zhao2') } != nil
+    assert results.find { |entry| entry[:english].include?('in progress') } != nil
+  end
+
   def test_can_return_english_translation
     result = Hanzi.to_english('你好')
     assert result.downcase.include?('hello')
