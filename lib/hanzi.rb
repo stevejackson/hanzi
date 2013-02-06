@@ -1,14 +1,18 @@
 # encoding: utf-8
+require 'trie'
 
 class Hanzi
   class << self
     attr_accessor :data
+    attr_accessor :data_trie
 
     def load_data
       return if @data
       @data = []
+      @data_trie = Trie.new
 
       file_path = File.expand_path('../../lib/data/cedict_ts.u8', __FILE__)
+      index = 0
       File.open(file_path).each_line do |line|
         next if line.start_with?('#')
         line = line.force_encoding('utf-8')
@@ -27,9 +31,26 @@ class Hanzi
         line = line[line.index('/'), line.rindex('/')]
         line_data[:english] = line[1, line.rindex('/') - 1]
 
-        @data << line_data
-      end
+        existing_count_simplified = 0
+        if find_first_hanzi_match(line_data[:simplified])
+          existing_count_simplified = matching_entries(line_data[:simplified]).count
+        end
+        @data_trie.add(line_data[:simplified] + existing_count_simplified.to_s, index)
 
+        if line_data[:simplified] != line_data[:traditional]
+          existing_count_traditional = 0
+          if find_first_hanzi_match(line_data[:traditional])
+            existing_count_traditional = matching_entries(line_data[:traditional]).count
+          end
+
+          @data_trie.add(line_data[:traditional] + existing_count_traditional.to_s, index)
+        end
+
+        @data << line_data
+
+
+        index += 1
+      end
     end
 
     def to_pinyin(text, options={})
@@ -52,7 +73,7 @@ class Hanzi
           match = nil
           match_length = 0
           4.downto(1) do |length|
-            match = find_hanzi_match(text[pos, length])
+            match = find_first_hanzi_match(text[pos, length])
             match_length = length
             break if match
           end
@@ -73,37 +94,44 @@ class Hanzi
     def to_english(text)
       load_data if @data.nil?
 
-      entry = find_hanzi_match(text)
+      entry = find_first_hanzi_match(text)
       entry[:english] if entry && entry[:english]
     end
 
     def to_simplified(text)
       load_data if @data.nil?
 
-      entry = find_hanzi_match(text)
+      entry = find_first_hanzi_match(text)
       entry[:simplified] if entry && entry[:simplified]
     end
 
     def to_traditional(text)
       load_data if @data.nil?
 
-      entry = find_hanzi_match(text)
+      entry = find_first_hanzi_match(text)
       entry[:traditional] if entry && entry[:traditional]
     end
 
     def matching_entries(text)
       load_data if @data.nil?
 
-      entries = @data.select do |word|
-        word[:simplified] == text || word[:traditional] == text
+      results = []
+      index = 0
+      loop do
+        id = @data_trie.get(text + index.to_s)
+        break if !id
+
+        results << @data[id]
+        index += 1
       end
+
+      results
     end
 
     private
-    def find_hanzi_match(text)
-      entry = @data.find do |word|
-        word[:simplified] == text || word[:traditional] == text
-      end
+    def find_first_hanzi_match(text)
+      id = @data_trie.get(text + "0")
+      @data[id] if id
     end
 
   end

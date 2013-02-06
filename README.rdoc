@@ -41,6 +41,10 @@ To run tests:
 
   rake test
 
+There is a script for profiling:
+
+  ruby test/profile_speed.rb # generates output in /tmp
+
 == Contributing to hanzi
 
 * Check out the latest master to make sure the feature hasn't been implemented or the bug hasn't been fixed yet.
