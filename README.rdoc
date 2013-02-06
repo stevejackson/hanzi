@@ -1,6 +1,7 @@
 = Hanzi
 
-Ruby gem for handling common Hanzi operations. Can convert to pinyin with proper tones for common words (other gems tend to fail on simple words), return english translation, or convert between simplified and traditional. Uses cc-cedict for data.
+Ruby gem for handling common Hanzi operations. Can convert to pinyin with proper tones for common words (other gems tend to fail on simple words), return english translation, or convert between simplified and traditional. Uses cc-cedict for data. Does lookups using tries (prefix trees) data structure.
+
 Example usage:
 
   Hanzi.load_data # optional to pre-load data.
@@ -40,10 +41,6 @@ Example usage:
 To run tests:
 
   rake test
-
-There is a script for profiling:
-
-  ruby test/profile_speed.rb # generates output in /tmp
 
 == Contributing to hanzi
 
