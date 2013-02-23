@@ -20,16 +20,12 @@ class Hanzi
         # CC-CEDICT format:
         # Traditional Simplified [pin1 yin1] /English equivalent 1/equivalent 2/
         line_data = {}
-        line_data[:traditional] = line[0, line.index(' ')]
+        line_data[:traditional], line_data[:simplified], line  = line.split(" ", 3)
 
-        line = line[line.index(' ') + 1, line.length]
-        line_data[:simplified] = line[0, line.index(' ')]
+        line_data[:pinyin], line = line[1..-1].split("]", 2)
+        line_data[:pinyin] = line_data[:pinyin].downcase
 
-        line = line[line.index('['), line.length]
-        line_data[:pinyin] = line[1, line.index(']') - 1].downcase
-
-        line = line[line.index('/'), line.rindex('/')]
-        line_data[:english] = line[1, line.rindex('/') - 1]
+        line_data[:english] = line[line.index('/') + 1, line.rindex('/') - 2]
 
         existing_count_simplified = 0
         if find_first_hanzi_match(line_data[:simplified])
