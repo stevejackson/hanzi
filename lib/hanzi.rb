@@ -20,7 +20,7 @@ class Hanzi
         # CC-CEDICT format:
         # Traditional Simplified [pin1 yin1] /English equivalent 1/equivalent 2/
         line_data = {}
-        line_data[:traditional], line_data[:simplified], line  = line.split(" ", 3)
+        line_data[:traditional], line_data[:simplified], line = line.split(" ", 3)
 
         line_data[:pinyin], line = line[1..-1].split("]", 2)
         line_data[:pinyin] = line_data[:pinyin].downcase
