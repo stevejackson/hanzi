@@ -99,4 +99,18 @@ class TestHanzi < Test::Unit::TestCase
     assert time < 0.01, "Lookups took #{time}s, should be less than 0.01s"
   end
 
+  def test_determine_word_from_surroundings
+    assert_equal Hanzi.determine_word('喜欢', 0), (0..1)
+    assert_equal Hanzi.determine_word('喜欢', 1), (0..1)
+    assert_equal Hanzi.determine_word('喜欢', 2), nil
+    assert_equal Hanzi.determine_word('我喜欢吃牛肉', 0), (0..0)
+    assert_equal Hanzi.determine_word('我喜欢吃牛肉', 1), (1..2)
+    assert_equal Hanzi.determine_word('我喜欢吃牛肉', 2), (1..2)
+    assert_equal Hanzi.determine_word('我喜欢吃牛肉', 3), (3..3)
+    assert_equal Hanzi.determine_word('我喜欢吃牛肉', 4), (4..5)
+    assert_equal Hanzi.determine_word('我喜欢吃牛肉', 5), (4..5)
+    assert_equal Hanzi.determine_word('我晕', 0), (0..0)
+    assert_equal Hanzi.determine_word('我晕', 1), (1..1)
+  end
+
 end

@@ -128,6 +128,23 @@ class Hanzi
       results
     end
 
+    def determine_word(text, index)
+      return nil if index < 0
+      return nil if index >= text.length
+
+      # first, try to find the largest match starting from index to the end of the text.
+      (text.length - 1).downto(index + 1) do |i|
+        return (index..i) if matching_entries(text[index..i]).any?
+      end
+
+      # next, try to find a match from the start of the string to the index.
+      0.upto(index - 1) do |i|
+        return (i..index) if matching_entries(text[i..index]).any?
+      end
+
+      (index..index)
+    end
+
     private
     def find_first_hanzi_match(text)
       id = @data_trie.get(text + "0")
