@@ -44,7 +44,7 @@ class TestHanzi < Test::Unit::TestCase
 
   def test_can_return_english_translation
     result = Hanzi.to_english('你好')
-    assert result.downcase.include?('hello')
+    assert_equal "Hello!/Hi!/How are you?", result
   end
 
   def test_returns_nil_for_not_found_english_translation
